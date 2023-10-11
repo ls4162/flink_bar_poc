@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+message Event {
+  string code = 1;
+  double price = 2;
+  int64 exchange_time = 3; // 使用int64来存储19位的timestamp
+}
