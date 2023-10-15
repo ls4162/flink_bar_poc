@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+// TheoPrice
+message TheoPrice {
+  bytes exchange = 1;
+  bytes instrument_id = 2;
+  double theo_price = 3;
+}
+
+// OptionPricinaRst
+message OptionPricingRst {
+  bytes exchange = 1;
+  bytes instrument_id = 2;
+  double fair_value = 3;
+  double delta = 4;
+}
+
+message Event {
+  fixed64 produce_time = 1;
+  oneof value {
+    TheoPrice theo_price = 10;
+    OptionPricingRst option_pricing_rst = 11;
+  }
+}

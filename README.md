@@ -6,6 +6,7 @@ download compiler https://github.com/protocolbuffers/protobuf/releases
 
 protoc --java_out=src/main/java SnapshotEntity.proto
 
+protoc --java_out=/prefix/to/out --proto_path=/prefix/to/in xxx.proto
 
 Kafka
 
