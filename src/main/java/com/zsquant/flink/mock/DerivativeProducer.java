@@ -27,28 +27,36 @@ public class DerivativeProducer {
                 ByteString exchangeByteString = ByteString.copyFrom("CFFEX".getBytes());
                 ByteString instrumentIdByteString = ByteString.copyFrom("MO101".getBytes());
                 Derivative.Event event;
-                if (random.nextBoolean()) {
-                    event = Derivative.Event.newBuilder()
-                            .setProduceTime(System.currentTimeMillis())
-                            .setTheoPrice(Derivative.TheoPrice.newBuilder()
-                                    .setExchange(exchangeByteString)
-                                    .setInstrumentId(instrumentIdByteString)
-                                    .setTheoPrice(random.nextDouble())
-                                    .build())
-                            .build();
-                } else {
-                    event = Derivative.Event.newBuilder()
-                            .setProduceTime(System.currentTimeMillis())
-                            .setOptionPricingRst(Derivative.OptionPricingRst.newBuilder()
-                                    .setExchange(exchangeByteString)
-                                    .setInstrumentId(instrumentIdByteString)
-                                    .setFairValue(random.nextDouble())
-                                    .setDelta(random.nextDouble())
-                                    .build())
-                            .build();
-                }
+//                if (random.nextBoolean()) {
+//                    event = Derivative.Event.newBuilder()
+//                            .setProduceTime(System.currentTimeMillis())
+//                            .setTheoPrice(Derivative.TheoPrice.newBuilder()
+//                                    .setExchange(exchangeByteString)
+//                                    .setInstrumentId(instrumentIdByteString)
+//                                    .setTheoPrice(random.nextDouble())
+//                                    .build())
+//                            .build();
+//                } else {
+//                    event = Derivative.Event.newBuilder()
+//                            .setProduceTime(System.currentTimeMillis())
+//                            .setOptionPricingRst(Derivative.OptionPricingRst.newBuilder()
+//                                    .setExchange(exchangeByteString)
+//                                    .setInstrumentId(instrumentIdByteString)
+//                                    .setFairValue(random.nextDouble())
+//                                    .setDelta(random.nextDouble())
+//                                    .build())
+//                            .build();
+//                }
+                event = Derivative.Event.newBuilder()
+                        .setProduceTime(System.currentTimeMillis())
+                        .setTheoPrice(Derivative.TheoPrice.newBuilder()
+                                .setExchange(exchangeByteString)
+                                .setInstrumentId(instrumentIdByteString)
+                                .setTheoPrice(random.nextDouble())
+                                .build())
+                        .build();
                 producer.send(new ProducerRecord<>(TOPIC, event.toByteArray()));
-                Thread.sleep(1000);
+                Thread.sleep(2000);
             }
         }
     }
